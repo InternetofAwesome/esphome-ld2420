@@ -5,7 +5,6 @@ from esphome.const import (
     CONF_ID,
     CONF_MOVING_DISTANCE,
     DEVICE_CLASS_DISTANCE,
-    STATE_CLASS_MEASUREMENT,
     UNIT_CENTIMETER,
 )
 
@@ -23,12 +22,9 @@ CONFIG_SCHEMA = cv.All(
             cv.Optional(CONF_MOVING_DISTANCE): sensor.sensor_schema(
                 device_class=DEVICE_CLASS_DISTANCE,
                 unit_of_measurement=UNIT_CENTIMETER,
-                state_class=STATE_CLASS_MEASUREMENT,
             ),
             **{
-                cv.Optional(f"gate_energy_{x}"): sensor.sensor_schema(
-                    state_class=STATE_CLASS_MEASUREMENT,
-                )
+                cv.Optional(f"gate_energy_{x}"): sensor.sensor_schema()
                 for x in range(TOTAL_GATES)
             },
         }
